@@ -4,7 +4,7 @@ public class ifCetakKRS10 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("--- Cetak KRS ---");
+        System.out.println("--- Cetak KRS SIAKAD---");
         System.out.print("Apakah UKT sudah lunas? (True/False): ");
         boolean uktLunas = sc.nextBoolean();
         if (uktLunas) {
