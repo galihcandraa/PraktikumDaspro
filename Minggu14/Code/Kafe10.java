@@ -2,14 +2,21 @@ package Minggu14.Code;
 
 public class Kafe10 {
     public static void main(String[] args) {
-        Menu("Andi", true);
+        Menu("Budi", true, "DISKON30");
     }
 
-    public static void Menu(String namaPelanggan, boolean isMember) {
+    public static void Menu(String namaPelanggan, boolean isMember, String kodePromo) {
         System.out.println("Selamat datang, " + namaPelanggan + "!");
 
         if (isMember) {
             System.out.println("Anda adalah member, dapatkan diskon 10% untuk seluruh pembelian");
+        }
+        if (kodePromo.equalsIgnoreCase("DISKON50")) {
+            System.out.println("Anda mendapat diskon 50% untuk seluruh pembelian");
+        } else if (kodePromo.equalsIgnoreCase("DISKON30")) {
+            System.out.println("Anda mendapat diskon 30% untuk seluruh pembelian");
+        } else {
+            System.out.println("Kode invalid");
         }
 
         System.out.println("===== MENU RESTO KAFE =====");
