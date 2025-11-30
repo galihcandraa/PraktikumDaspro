@@ -2,14 +2,26 @@ package Minggu14.Code;
 import java.util.Scanner;
 public class Kafe10 {
     static Scanner sc = new Scanner(System.in);
+    static String lanjut;
+    static int pilihanMenu, banyakItem, totalHarga = 0;
+
     public static void main(String[] args) {
         Menu("Budi", true, "DISKON30");
-        System.out.print("\nMasukkan nomor menu yang ingin anda pesan: ");
-        int pilihanMenu = sc.nextInt();
-        System.out.print("Masukkan jumlah item yang ingin anda pesan: ");
-        int banyakItem = sc.nextInt();
+        do {
+            System.out.print("\nMasukkan nomor menu yang ingin anda pesan: ");
+            pilihanMenu = sc.nextInt();
+            System.out.print("Masukkan jumlah item yang ingin anda pesan: ");
+            banyakItem = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Apakah ingin memesan lagi? (y/n): ");
+            lanjut = sc.nextLine();
+            totalHarga += hitungTotalHarga(pilihanMenu, banyakItem);
+        } while (lanjut.equalsIgnoreCase("y"));
 
-        int totalHarga = hitungTotalHarga(pilihanMenu, banyakItem);
+        System.out.print("Masukkan kode promo: ");
+        String kodePromo = sc.nextLine();
+
+        totalHarga = hitungiskon(totalHarga, kodePromo);
 
         System.out.println("Total harga untuk pesanan anda: Rp" + totalHarga);
     }
@@ -40,8 +52,19 @@ public class Kafe10 {
 
     public static int hitungTotalHarga(int pilihanMenu, int banyakItem) {
         int[] hargaItems = { 15000, 20000, 22000, 12000, 10000, 18000 };
+        return hargaItems[pilihanMenu - 1] * banyakItem;
+    }
 
-        int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
-        return hargaTotal;
+    public static int hitungiskon(int total, String kodePromo) {
+        if (kodePromo.equalsIgnoreCase("DISKON50")) {
+            total *= 0.5;
+            System.out.println("Anda mendapat diskon 50% untuk seluruh pembelian");
+        } else if (kodePromo.equalsIgnoreCase("DISKON30")) {
+            total *= 0.7;
+            System.out.println("Anda mendapat diskon 30% untuk seluruh pembelian");
+        } else {
+            System.out.println("Kode invalid! tidak ada diskon");
+        }
+        return total;
     }
 }
